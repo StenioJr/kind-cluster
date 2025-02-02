@@ -60,7 +60,7 @@ spec:
       # Run Vault in "HA" mode.
       ha:
         enabled: true
-        replicas: 3 
+        replicas: 2 
         raft:
           enabled: true
           setNodeId: true
@@ -89,17 +89,17 @@ spec:
                 leader_client_cert_file = "/vault/userconfig/tls-server/vault.crt"
                 leader_client_key_file = "/vault/userconfig/tls-server/vault.key"
               }
-              retry_join {
-                leader_api_addr = "https://vault-2.vault-internal:8200"
-                leader_ca_cert_file = "/vault/userconfig/tls-ca/ca.crt"
-                leader_client_cert_file = "/vault/userconfig/tls-server/vault.crt"
-                leader_client_key_file = "/vault/userconfig/tls-server/vault.key"
-              }
+              #   retry_join {
+              # leader_api_addr = "https://vault-2.vault-internal:8200"
+              # leader_ca_cert_file = "/vault/userconfig/tls-ca/ca.crt"
+              #  leader_client_cert_file = "/vault/userconfig/tls-server/vault.crt"
+              #  leader_client_key_file = "/vault/userconfig/tls-server/vault.key"
+              # }
             } 
 
     # Vault UI
     ui:
       enabled: true
-      serviceType: "LoadBalancer"
+      serviceType: "ClusterIP"
       serviceNodePort: null
       externalPort: 8200
